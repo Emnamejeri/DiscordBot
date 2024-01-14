@@ -2,16 +2,19 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
+    "types": ["node", "discord.js", "jest"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "lib": ["es2015", "es2017", "dom"],
-    "types": ["node"]
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es2015", "es2017", "dom"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src//.ts", "src//.tsx", "tests//.ts", "tests//.tsx"],
   "exclude": ["node_modules"]
 }
