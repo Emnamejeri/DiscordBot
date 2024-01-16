@@ -2,7 +2,6 @@ import { TextChannel, Client } from 'discord.js'
 import { CongratulatoryMessage } from '../models/message'
 import DatabaseService from '../services/databaseService'
 
-// Assuming you have the channel ID for the "celebrate" channel
 const CELEBRATE_CHANNEL_ID = '1190523991660707921'
 
 export const sendMessageToDiscord = async (message: CongratulatoryMessage, client: Client): Promise<void> => {
@@ -18,11 +17,9 @@ export const sendMessageToDiscord = async (message: CongratulatoryMessage, clien
       Here's a GIF for you: ${message.gifUrl}
     `
 
-    // Get the "celebrate" channel
     const channel = client.channels.cache.get(CELEBRATE_CHANNEL_ID) as TextChannel | undefined
 
     if (channel) {
-      // Send the message to the channel
       await channel.send(textMessage)
       console.log('Message sent to Discord!')
     } else {
