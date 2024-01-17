@@ -1,14 +1,21 @@
 import axios from 'axios'
 
-const GIPHY_API_KEY = 'wWf20RL8VIyI5ELTmGLCsrc2nsoGM0My'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+const GIPHY_API_KEY = process.env.GIPHY_API_KEY
+
+if (!GIPHY_API_KEY) {
+  console.error('Giphy API key is missing in the .env file.')
+  process.exit(1)
+}
 
 export const getRandomGif = async (): Promise<string> => {
   try {
     const response = await axios.get(
       `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=celebrate&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`,
     )
-
-    console.log('Giphy API response:', response)
 
     if (response.status >= 200 && response.status < 300) {
       const gifs = response?.data?.data
@@ -18,7 +25,6 @@ export const getRandomGif = async (): Promise<string> => {
         const gifUrl = gifs[randomIndex]?.images?.original?.url
 
         if (gifUrl) {
-          console.log('Giphy API response:', response)
           return gifUrl
         }
       }
